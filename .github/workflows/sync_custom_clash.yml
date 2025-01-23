@@ -44,11 +44,16 @@ jobs:
           ruleset=🇺🇳 原生IP,https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EHGallery/EHGallery.list,28800
           }' ./cfg/Custom_Clash_Mainland.ini -i
 
+      - name: Delete upstream-repo
+        run: rm -rf upstream-repo
+
       # Step 4: 提交更改到目标仓库
       - name: Commit and Push Changes
         run: |
-          git add .
-          git commit -m "Update Custom_Clash_Full.ini based on Custom_Clash.ini"
-          git push https://$TARGET_REPO_TOKEN@github.com/Aethersailor/Custom_Clash_Rules.git main
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cfg/Custom_Clash_Mainland.ini
+          git commit -m "Update Custom_Clash_Mainland.ini based on https://github.com/Aethersailor/Custom_Clash_Rules/Custom_Clash_Mainland.ini"
+          git push origin HEAD
         env:
           TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
