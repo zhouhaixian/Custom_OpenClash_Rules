@@ -13,48 +13,34 @@ jobs:
       - name: Checkout Source Repo
         uses: actions/checkout@v3
 
-      # Step 2: 克隆目标仓库
+      # Step 2: 安装 Python 环境
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Step 3: 克隆目标仓库
       - name: Clone Target Repo
         run: |
           git clone https://github.com/Aethersailor/Custom_OpenClash_Rules.git upstream-repo
           cd upstream-repo
 
-      # Step 3: 修改文件
+      # Step 4: 修改文件
       - name: Modify File
         run: |
           # 复制原文件
-          cp ./upstream-repo/cfg/Custom_Clash_Mainland.ini ./cfg/Custom_Clash_Mainland.ini
-
-          # 在最后一行"custom_proxy_group"之后添加原生IP节点组
-          awk '
-          /custom_proxy_group/ { last_match = NR }
-          END {
-              for (i = 1; i <= NR; i++) {
-                  if (i == last_match + 1) {
-                      print "custom_proxy_group=🇺🇳 原生IP`url-test`(原生|家宽IEPL)`https://cp.cloudflare.com/generate_204`300,,50"
-                  }
-                  print lines[i]
-              }
-          }
-          { lines[NR] = $0 }
-          ' ./cfg/Custom_Clash_Mainland.ini > temp.txt && mv temp.txt ./cfg/Custom_Clash_Mainland.ini
-
-          # 添加特定的规则集
-          sed '0,/Twitter/{/Twitter/a\ruleset=🇺🇳 原生IP,https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EHGallery/EHGallery.list,28800
-          }' ./cfg/Custom_Clash_Mainland.ini -i
-          sed '0,/Twitter/{/Twitter/a\ruleset=🇺🇳 原生IP,[]GEOSITE,ehentai
-          }' ./cfg/Custom_Clash_Mainland.ini -i
-
+          cp ./upstream-repo/cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini
+          python py/modify_rules.py
+          
+      # Step 5: 删除 upstream-repo 文件夹
       - name: Delete upstream-repo
         run: rm -rf upstream-repo
 
-      # Step 4: 提交更改到目标仓库
+      # Step 6: 提交更改到目标仓库
       - name: Commit and Push Changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add cfg/Custom_Clash_Mainland.ini
-          git commit -m "Update Custom_Clash_Mainland.ini based on https://github.com/Aethersailor/Custom_Clash_Rules/Custom_Clash_Mainland.ini"
+          git add cfg/Custom_Clash.ini
+          git commit -m "Update Custom_Clash.ini based on https://github.com/Aethersailor/Custom_Clash_Rules/Custom_Clash.ini"
           git push origin HEAD
-        env:
-          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
