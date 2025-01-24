@@ -26,7 +26,7 @@ def modify_rules():
     # 添加 EHentai 规则集
     content = content.replace(
         "ruleset=💬 ChatGPT,[]GEOSITE,openai",
-        "ruleset=💬 ChatGPT,[]GEOSITE,openai\nruleset=🔞 EHentai(EXHentai),https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EHGallery/EHGallery.list,28800\nruleset=🔞 EHentai(EXHentai),[]GEOSITE,ehentai"
+        "ruleset=💬 ChatGPT,[]GEOSITE,openai\nruleset=🔞 EHentai(EXHentai),https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EHGallery/EHGallery.list,28800\nruleset=🔞 EHentai(EXHentai),[]GEOSITE,ehentai"
     )
 
     # 写入文件2
