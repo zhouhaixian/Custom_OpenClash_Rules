@@ -55,9 +55,8 @@ jobs:
 
       # Step 7: 提交更改到目标仓库
       - name: Commit and Push Changes
-        if: ${{ steps.compare_files.outputs.is_files_different }}
+        if: steps.compare_files.outputs.is_files_different
         run: |
-          echo "${{ steps.compare_files.outputs.is_files_different }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cfg/Custom_Clash.ini
