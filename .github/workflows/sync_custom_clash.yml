@@ -48,7 +48,7 @@ jobs:
           exit 0
           
       # Step 6: 清理环境
-      - name: Delete upstream-repo
+      - name: Clean Enviornment
         run: |
           rm -rf upstream-repo
           rm ./cfg/Custom_Clash.ini.bak
@@ -57,6 +57,7 @@ jobs:
       - name: Commit and Push Changes
         if: ${{ steps.compare_files.outputs.is_files_different }}
         run: |
+          echo "${{ steps.compare_files.outputs.is_files_different }}"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cfg/Custom_Clash.ini
