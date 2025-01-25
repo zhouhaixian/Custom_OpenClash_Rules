@@ -29,6 +29,7 @@ jobs:
       - name: Modify Files
         run: |
           # 复制原文件
+          cp ./cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini.bak
           cp ./upstream-repo/cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini
           python py/modify_rules.py
           python py/generate_mainland.py
@@ -37,7 +38,7 @@ jobs:
       - name: Compare Files
         id: compare_files
         run: |
-          cmp --quiet ./cfg/Custom_Clash.ini ./upstream-repo/cfg/Custom_Clash.ini
+          cmp --quiet ./cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini.bak
           if test $? = 0
           then
               is_files_different=false
@@ -45,10 +46,13 @@ jobs:
               is_files_different=true
           fi
           echo "is_files_different=$is_files_different" >> $GITHUB_OUTPUT
+          exit 0
           
-      # Step 6: 删除 upstream-repo 文件夹
+      # Step 6: 清理环境
       - name: Delete upstream-repo
-        run: rm -rf upstream-repo
+        run: |
+          rm -rf upstream-repo
+          rm ./cfg/Custom_Clash.ini.bak
 
       # Step 7: 提交更改到目标仓库
       - name: Commit and Push Changes
