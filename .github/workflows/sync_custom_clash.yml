@@ -37,8 +37,7 @@ jobs:
       - name: Compare Files
         id: compare_files
         run: |
-          ls -R
-          cmp --quiet ./cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini.bak
+          cmp --quiet ./cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini.bak || exit 0
           if test $? = 0
           then
               is_files_different=false
