@@ -8,7 +8,8 @@ def modify_rules():
     # 添加"原生IP"节点组
     content = content.replace(
         "custom_proxy_group=🇻🇳 越南节点`url-test`(越南|Vietnam)`https://cp.cloudflare.com/generate_204`300,,50",
-        "custom_proxy_group=🇻🇳 越南节点`url-test`(越南|Vietnam)`https://cp.cloudflare.com/generate_204`300,,50\ncustom_proxy_group=🇺🇳 原生IP`url-test`(原生|家宽IEPL)`https://cp.cloudflare.com/generate_204`300,,50"
+        "custom_proxy_group=🇻🇳 越南节点`url-test`(越南|Vietnam)`https://cp.cloudflare.com/generate_204`300,,50"
+        +"\ncustom_proxy_group=🇺🇳 原生IP`url-test`(家宽)`https://cp.cloudflare.com/generate_204`300,,50"
     )
 
     # 添加"原生IP"节点组到各节点组
@@ -22,6 +23,12 @@ def modify_rules():
         "custom_proxy_group=💬 ChatGPT`select`[]🇭🇰 香港节点`[]🇺🇸 美国节点`[]🇯🇵 日本节点`[]🇸🇬 新加坡节点`[]🇹🇼 台湾节点`[]🇰🇷 韩国节点`[]🇨🇦 加拿大节点`[]🇬🇧 英国节点`[]🇫🇷 法国节点`[]🇩🇪 德国节点`[]🇳🇱 荷兰节点`[]🇹🇷 土耳其节点`[]🇻🇳 越南节点`[]🇺🇳 原生IP`[]🚀 节点选择`[]♻️ 自动选择`.*",
         "custom_proxy_group=💬 ChatGPT`select`[]🇺🇳 原生IP`[]🇭🇰 香港节点`[]🇺🇸 美国节点`[]🇯🇵 日本节点`[]🇸🇬 新加坡节点`[]🇹🇼 台湾节点`[]🇰🇷 韩国节点`[]🇨🇦 加拿大节点`[]🇬🇧 英国节点`[]🇫🇷 法国节点`[]🇩🇪 德国节点`[]🇳🇱 荷兰节点`[]🇹🇷 土耳其节点`[]🇻🇳 越南节点`[]🚀 节点选择`[]♻️ 自动选择`.*"
         +"\ncustom_proxy_group=🔞 EHentai(EXHentai)`select`[]🇺🇳 原生IP`[]♻️ 自动选择`[]🇭🇰 香港节点`[]🇺🇸 美国节点`[]🇯🇵 日本节点`[]🇸🇬 新加坡节点`[]🇹🇼 台湾节点`[]🇰🇷 韩国节点`[]🇨🇦 加拿大节点`[]🇬🇧 英国节点`[]🇫🇷 法国节点`[]🇩🇪 德国节点`[]🇳🇱 荷兰节点`[]🇹🇷 土耳其节点`[]🇻🇳 越南节点`[]🚀 节点选择"
+    )
+
+    #更改漏网之鱼策略组默认节点为全球直连
+    content = content.replace(
+        "custom_proxy_group=🐟 漏网之鱼`select`[]🇭🇰 香港节点`[]🇺🇸 美国节点`[]🇯🇵 日本节点`[]🇸🇬 新加坡节点`[]🇹🇼 台湾节点`[]🇰🇷 韩国节点`[]🇨🇦 加拿大节点`[]🇬🇧 英国节点`[]🇫🇷 法国节点`[]🇩🇪 德国节点`[]🇳🇱 荷兰节点`[]🇹🇷 土耳其节点`[]🇻🇳 越南节点`[]🇺🇳 原生IP`[]🚀 节点选择`[]♻️ 自动选择`[]🎯 全球直连`.*",
+        "custom_proxy_group=🐟 漏网之鱼`select`[]🎯 全球直连`[]🇭🇰 香港节点`[]🇺🇸 美国节点`[]🇯🇵 日本节点`[]🇸🇬 新加坡节点`[]🇹🇼 台湾节点`[]🇰🇷 韩国节点`[]🇨🇦 加拿大节点`[]🇬🇧 英国节点`[]🇫🇷 法国节点`[]🇩🇪 德国节点`[]🇳🇱 荷兰节点`[]🇹🇷 土耳其节点`[]🇻🇳 越南节点`[]🇺🇳 原生IP`[]🚀 节点选择`[]♻️ 自动选择`.*"
     )
 
     #添加 Pixiv 节点组
