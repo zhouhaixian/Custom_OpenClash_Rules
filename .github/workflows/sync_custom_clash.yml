@@ -49,6 +49,7 @@ jobs:
       # Step 6: 清理环境
       - name: Clean Enviornment
         run: |
+          echo "${{ steps.compare_files.outputs.is_files_different }}"
           rm -rf upstream-repo
           rm ./cfg/Custom_Clash.ini.bak
 
