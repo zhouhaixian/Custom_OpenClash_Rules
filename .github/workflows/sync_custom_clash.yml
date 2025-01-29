@@ -37,6 +37,7 @@ jobs:
       - name: Compare Files
         id: compare_files
         run: |
+          ls -R
           cmp --quiet ./cfg/Custom_Clash.ini ./cfg/Custom_Clash.ini.bak
           if test $? = 0
           then
@@ -61,5 +62,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cfg/Custom_Clash.ini
           git add cfg/Custom_Clash_Mainland.ini
-          git commit -m "Update Custom_Clash.ini and Custom_Clash_Mainland.ini based on https://github.com/Aethersailor/Custom_Clash_Rules/Custom_Clash.ini" || exit 0
+          git commit -m "Update Custom_Clash.ini and Custom_Clash_Mainland.ini based on https://github.com/Aethersailor/Custom_Clash_Rules/Custom_Clash.ini"
           git push origin HEAD
